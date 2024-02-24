@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <h1>Student</h1>
+    <style>
+        .form-label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+
+        .form-input {
+            display: inline-block;
+            width: 200px;
+        }
+        .submit-button {
+            display: inline-block;
+            margin: 10px auto;
+            width: 310px;
+        }
+    </style>
+
+    <form action="/signupcomplete/student" method="post">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" name="email" id="email" class="form-input">
+        <br>
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" id="username" class="form-input">
+        <br>
+        <label for="first" class="form-label">First Name</label>
+        <input type="text" name="first" id="first" class="form-input">
+        <br>
+        <label for="last" class="form-label">Last Name</label>
+        <input type="text" name="last" id="last" class="form-input">
+        <br>
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" id="pw" class="form-input">
+        <br>
+        <label for="school" class="form-label">School</label>
+        <input type="text" name="school" id="school" class="form-input">
+        <br>
+        <input type="submit" value="Submit" class="submit-button">
+    </form>
+</body>
+</html>

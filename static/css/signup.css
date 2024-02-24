@@ -1,0 +1,14 @@
+#one{
+    position: absolute;
+    top:90%;
+    left:20%;
+}
+#two{
+    position: absolute;
+    top:90%;
+    left:70%;
+}
+.signup{
+    width:30%;
+    height:80%;
+}
