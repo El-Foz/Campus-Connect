@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Schedule</title>
+    <script src="/js/schedule.js" defer></script>
+    <link rel="stylesheet" href="/css/schedule.css">
+</head>
+<body>
+    <p>How big is your schedule? (Check off all occupied periods)</p>
+    <input onchange="resizeTable()" type="number" name="period" id="per"min="3" max="11" step="1" value="7">
+    periods by 
+    <input onchange="resizeTable()" type="number" name="day" id="days" min="1" max="10" step="1" value="5">
+    days
+    <br>
+    <table id="schedule">
+        
+    </table>
+
+</body>
+</html>

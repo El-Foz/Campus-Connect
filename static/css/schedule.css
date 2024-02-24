@@ -1,0 +1,9 @@
+#schedule{
+    width:100%;
+    height:80%;
+}
+td, th {
+    border: 3px solid black;
+    text-align: left;
+    padding: 8px;
+  }

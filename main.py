@@ -67,7 +67,9 @@ def logincompletestud():
             resp.set_cookie('user', token)
 
         return "test"
-
+@app.route('/teacher/schedule')
+def teacherschedule():
+    return render_template("teachersched.html")
 @app.route('/logincomplete/teach',methods =["POST"])
 def logincompleteteach():
     with sqlite3.connect("database.db") as con:
