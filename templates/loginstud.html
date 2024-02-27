@@ -4,30 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/actual-login.css">
+    <link rel="stylesheet" href="/css/signup.css">
 </head>
 <body>
-    <h1>Student Login</h1>
-    <style>
-        .form-label {
-            display: inline-block;
-            width: 100px;
-            text-align: right;
-        }
-
-        .form-input {
-            display: inline-block;
-            width: 200px;
-        }
-        .submit-button {
-            display: inline-block;
-            margin: 10px auto;
-            width: 310px;
-        }
     </style>
+    <h1>Student Login</h1>
 
-    <form action="/logincomplete/student" method="post">
-        <label for="email-username" class="form-label">Email/Username</label>
-        <input type="text" name="email-username" id="email-username" class="form-input">
+    <form action="/logincomplete/stud" method="post">
+        <label for="email-username" class="form-label">Username</label>
+        <input type="text" name="username" id="email-username" class="form-input">
         <br>
         <label for="password" class="form-label">Password</label>
         <input type="password" name="password" id="pw" class="form-input">

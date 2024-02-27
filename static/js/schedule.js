@@ -15,3 +15,15 @@ function resizeTable(){
         schedule.append(entry)
     }
 }
+resizeTable()
+function submitTable(){
+    var x=[]
+    for(var i=0; i<schedule.childNodes.length; i++){
+        var y=[]
+        for(var j=0; j<schedule.childNodes[i].childNodes.length; j++){
+            y.push(schedule.childNodes[i].childNodes[j].childNodes[0].checked);
+        }
+        x.push(y)
+    }
+    
+}

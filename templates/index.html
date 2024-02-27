@@ -3,17 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Name</title>
+    <title>Campus Connect</title>
     <link rel="stylesheet" href="css/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
 
 </head>
 <body>
-    <div id="header">
-        <h1>Home</h1>
+    <div class="header-container">
+        <h1 id="title" class="topbar">Campus<br>Connect</h1>
+        <div id="buttons">
+            <button id='login' onclick="location.href='/login'">Log In</button>
+            <button id='signup' onclick="location.href='/signup'">Sign Up</button>
+        </div>
     </div>
-    <div id="navbar">
-        <button onclick="location.href='/login'">Log In</button>
-        <button onclick="location.href='/signup'">Sign Up</button>
+    
+    <div class = "header-container">
+    <div id="explain">
+        <p>
+            Hackley's first community-oriented service for teacher meetings. High school can be an academically challenging time for
+            everyone, and Campus Connect seeks to streamline student-teacher interaction.
+        </p>
+    </div>
+    <div id='jimpanel'>
+        <img src="https://res.cloudinary.com/veracross/image/upload/w_500,h_500,c_limit/v1696013884/hackley/person_photos/e0sykxbhhb9sj7xpjbmd.jpg" alt="himmy" width="500" height="500">
+        <p><i>"Campus Connect helped me meet with my teachers so much eaiser and raised my GPA!"</i> <br> -Trashgim (Jimmy) Mulosmani, Hackley '25</p>
+    </div>
     </div>
 </body>
 </html>

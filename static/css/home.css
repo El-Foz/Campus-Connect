@@ -1,0 +1,61 @@
+body {
+    background-image: linear-gradient(to right, black 0%, black 35%, #124559 50%, #5798af 100%); 
+    font-family: "Inter";
+}
+
+#title {
+    color: #598392;
+    text-align: left;
+    
+    font-size: 80px;
+    -webkit-text-stroke: 1px white;
+    padding-left: 130px;
+    white-space: pre-line;
+}
+
+.header-container {
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+}
+
+#explain {
+    display: flex;
+    color: white;
+    max-width: 600px;
+    text-align: center;
+    padding-left: 10px;
+    line-height: 30px;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 300px;
+    margin-right: 0;
+    margin-top: -15;
+    margin-bottom: auto;
+    float: right;
+}
+
+#signup, #login {
+    border-radius: 50px;
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+    width: 110px;
+}
+
+#jimpanel {
+    align-content: bottom;
+    color: black;
+    display: inline-block;
+    padding-right: 200px;
+}
+
+#jimpanel img {
+    border: 10px solid transparent;
+    border-image: radial-gradient(circle at center, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 1) 0%) 1 / 1 / 0 stretch;
+    width: 500px;
+    height: 500px;
+}

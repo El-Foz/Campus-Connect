@@ -3,10 +3,9 @@ from flask import Flask, render_template, request, redirect, session, make_respo
 app=Flask(__name__, static_url_path='', static_folder='static', template_folder='templates')
 from dotenv import load_dotenv
 load_dotenv()
-db = sqlite3.connect("database.db")
-
+db = sqlite3.connect("database.db", check_same_thread=False)
+jwtkey=os.environ['jwtkey']
 app.secret_key = os.environ["key"]
-jwtkey=os.environ["jwtkey"]
 @app.route('/')
 def home():
     return render_template('/index.html')
@@ -34,76 +33,100 @@ def loginteach():
 def loginstudent():
     return render_template('/loginstud.html')
  
-@app.route("/signupcomplete/student", methods=['POST'] )
+@app.route("/signupcomplete/stud", methods=['POST'] )
 def completestud():
-    cur = db.cursor()
-    cur.execute("INSERT INTO USERS (USERNAME, PW, EMAIL,  STUDENT) values (?, ?, ?, ?))",[
-        request.form['username'],
-        request.form['email'],
-        hash(request.form["password"]),
-        request.form['first'] + " " + request.form['last'],
-        1 # student
-    ])
-    redirect("/")
-
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+        cur.execute("INSERT INTO USERS (USERNAME, PW, EMAIL, NAME, STUDENT) values (?, ?, ?,?, ?)",[
+            request.form['username'],
+            request.form["password"],
+            request.form['email'],
+            request.form['first'] + " " + request.form['last'],
+            1 # student
+        ])
+        return redirect("/")
+@app.route("/studpage")
+def sdfghj():
+    render_template("studpage.html")
 @app.route('/logincomplete/stud', methods=["POST"])
 def logincompletestud():
     with sqlite3.connect("database.db") as con:
-        res=con.cursor().execute("SELECT * FROM USERS")
-        res.fetchall()
-        x=0
+        cur=con.cursor()
+        res=cur.execute("SELECT * FROM USERS")
+        z=res.fetchall()
         n=False
-        for i in res:
-            if i[1]==request.form['username'] and hash(request.form['password'])==i[3]:
+        resp=make_response(redirect("/teacher/schedule"))
+        for i in z:
+            if i[1] == request.form['username'] and request.form['password']==i[2]:
                 n=True
                 break
-            x+=1
         if n:
             token=jwt.encode(
-                payload=res[x],
-                key=jwtkey
+                {'data': i},
+                jwtkey, 
+                algorithm='HS256'
             )
-            resp=make_response("test")
+            print(token)
             resp.set_cookie('user', token)
+        return resp
 
-        return "test"
+
+        return resp
 @app.route('/teacher/schedule')
 def teacherschedule():
-    return render_template("teachersched.html")
+    cooking=request.cookies.get("user")
+    print(cooking)
+    if cooking != None:
+        x=jwt.decode(cooking, os.environ["jwtkey"], algorithms=['HS256', ])
+        print(cooking)
+        return render_template("teachersched.html")
+    return "not logged in"
+
+@app.route("/submiteachersched",methods=["POST"])
+def submitteachersstuff():
+    with sqlite3.connect("database.db") as con:
+        cur=con.cursor()
+
+@app.route("/home")
+def poiuytr():
+    return redirect("/")
 @app.route('/logincomplete/teach',methods =["POST"])
 def logincompleteteach():
     with sqlite3.connect("database.db") as con:
         cur=con.cursor()
         res=cur.execute("SELECT * FROM USERS")
-        res.fetchall()
-        x=0
+        z=res.fetchall()
         n=False
-        for i in res:
-            if i[1] == request.form['username'] and hash(request.form['password'])==i[3]:
+        resp=make_response(redirect("/teacher/schedule"))
+        for i in z:
+            if i[1] == request.form['username'] and request.form['password']==i[2]:
                 n=True
                 break
-            x+=1
         if n:
             token=jwt.encode(
-                payload=res[x]
+                {'data': i},
+                jwtkey, 
+                algorithm='HS256'
             )
+            print(token)
+            resp.set_cookie('user', token)
+        return resp
 
-        return "test"
-
-    #return "teacher login"
 
 @app.route("/signupcomplete/teach", methods=['POST'] )
 def completeteach():
-    cur = db.cursor()
-    cur.execute("INSERT INTO USERS (USERNAME, PW, EMAIL,  TEACHER) values (?, ?, ?, ?))",[
-        request.form['username'],
-        request.form['email'],
-        hash(request.form["password"]),
-        request.form['first']+" "+request.form['last'], 
-        0 # teacher
-    ])
-    db.commit()
-    redirect("/")
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+        cur.execute("INSERT INTO USERS (USERNAME, PW, EMAIL, NAME, STUDENT) values (?, ?, ?,?, ?)", [
+            request.form['username'],
+            request.form["password"],
+            request.form['email'],
+            request.form['first']+" "+request.form['last'], 
+            0 # teacher
+        ])
+        db.commit()
+        return redirect("/")
+
 
 if __name__ == '__main__':
     app.run()
